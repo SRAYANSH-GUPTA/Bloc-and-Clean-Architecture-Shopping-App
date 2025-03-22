@@ -1,5 +1,6 @@
-// Define the Product entity
-class Product {
+import 'package:equatable/equatable.dart';
+
+class Product extends Equatable {
   final int id;
   final String title;
   final String description;
@@ -23,7 +24,7 @@ class Product {
   final List<String> images;
   final String thumbnail;
 
-  Product({
+  const Product({
     required this.id,
     required this.title,
     required this.description,
@@ -47,9 +48,33 @@ class Product {
     required this.images,
     required this.thumbnail,
   });
+  @override
+  List<Object?> get props => [
+    id,
+    title,
+    description,
+    category,
+    price,
+    discountPercentage,
+    rating,
+    stock,
+    tags,
+    brand,
+    sku,
+    weight,
+    dimensions,
+    warrantyInformation,
+    shippingInformation,
+    availabilityStatus,
+    reviews,
+    returnPolicy,
+    minimumOrderQuantity,
+    meta,
+    images,
+    thumbnail,
+  ];
 }
 
-// Define the Review entity
 class Review {
   final int rating;
   final String comment;
@@ -66,7 +91,6 @@ class Review {
   });
 }
 
-// Define the Dimensions entity
 class Dimensions {
   final double width;
   final double height;
@@ -75,7 +99,6 @@ class Dimensions {
   Dimensions({required this.width, required this.height, required this.depth});
 }
 
-// Define the Meta entity
 class Meta {
   final DateTime createdAt;
   final DateTime updatedAt;
