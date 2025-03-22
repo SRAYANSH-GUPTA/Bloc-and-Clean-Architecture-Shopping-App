@@ -25,12 +25,21 @@ class _ShoppingItemsState extends State<ShoppingItems> {
           Stack(
             children: [GestureDetector(
               onTap: (){},
-              child: Icon(Icons.shopping_bag),
+              child: Icon(Icons.shopping_bag,size: 35,),
             ),
             Positioned(
               top: 8,
               right: 8,
-              child:Container()
+              child:Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.red,
+                
+                ),
+                  
+                // color: Colors.red,
+                child: Text("25"),
+              )
 
             )]
           ),
