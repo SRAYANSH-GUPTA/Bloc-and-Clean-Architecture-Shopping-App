@@ -17,6 +17,25 @@ class _ShoppingItemsState extends State<ShoppingItems> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Catalogue"),
+        centerTitle: true,
+        elevation: 5,
+        actions: [
+          Stack(
+            children: [GestureDetector(
+              onTap: (){},
+              child: Icon(Icons.shopping_bag),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child:Container()
+
+            )]
+          ),
+        ],
+      ),
       body:
         BlocBuilder<RemoteItemsBloc, RemoteItemsState>(
           builder: (_, state) {
@@ -24,10 +43,12 @@ class _ShoppingItemsState extends State<ShoppingItems> {
               return LinearProgressIndicator();
             } else if (state is RemoteItemsDone) {
               return GridView.builder(
+
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
                 crossAxisSpacing: 2,
-                mainAxisSpacing: 5,
-                childAspectRatio: 1),
+                mainAxisSpacing: 2,
+                childAspectRatio: 0.7
+                ),
                 itemCount: state.product!.length,
                 itemBuilder: (context, index) {
                   return ItemDisplayWidget(product: state.product![index]);
