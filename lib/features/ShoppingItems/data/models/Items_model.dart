@@ -1,7 +1,13 @@
 import 'package:gooddeals/features/ShoppingItems/domain/entities/ItemEntity.dart';
+import 'package:floor/floor.dart';
+import 'package:gooddeals/features/ShoppingItems/data/data_sources/local/string_list_converter.dart';
+import 'package:gooddeals/features/ShoppingItems/data/converters/review_converter.dart';
+import 'package:gooddeals/features/ShoppingItems/data/converters/meta_converter.dart';
 
+@Entity(tableName: 'cart', primaryKeys: ['id'])
+@TypeConverters([StringListConverter, ReviewConverter, MetaConverter])
 class ItemsModel extends Product {
-  ItemsModel({
+  const ItemsModel({
     required super.id,
     required super.title,
     required super.description,
@@ -25,6 +31,7 @@ class ItemsModel extends Product {
     required super.images,
     required super.thumbnail,
   });
+
   factory ItemsModel.fromJson(Map<String, dynamic> json) {
     return ItemsModel(
       id: json['id'] ?? 0,

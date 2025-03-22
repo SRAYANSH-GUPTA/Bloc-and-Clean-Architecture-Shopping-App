@@ -4,7 +4,7 @@ import 'package:gooddeals/features/ShoppingItems/domain/entities/ItemEntity.dart
 class ItemDisplayWidget extends StatelessWidget {
   final Product product;
 
-  const ItemDisplayWidget({Key? key, required this.product}) : super(key: key);
+  const ItemDisplayWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,10 @@ class ItemDisplayWidget extends StatelessWidget {
                   right: 8,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text('Add'),
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.pinkAccent,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
+                    child: Text('Add'),
                 ),),
               ],
             ),

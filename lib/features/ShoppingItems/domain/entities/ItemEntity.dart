@@ -98,6 +98,16 @@ class Review {
       reviewerEmail: json['reviewerEmail'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'rating': rating,
+      'comment': comment,
+      'date': date.toIso8601String(),
+      'reviewerName': reviewerName,
+      'reviewerEmail': reviewerEmail,
+    };
+  }
 }
 
 class Dimensions {
@@ -128,5 +138,14 @@ class Meta {
       barcode: json['barcode'],
       qrCode: json['qrCode'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'barcode': barcode,
+      'qrCode': qrCode,
+    };
   }
 }

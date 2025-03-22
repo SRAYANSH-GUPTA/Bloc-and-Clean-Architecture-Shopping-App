@@ -1,10 +1,8 @@
-import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_bloc.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_state.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/widget/Item_display_widget.dart';
-import 'package:retrofit/http.dart';
 
 class ShoppingItems extends StatefulWidget {
   const ShoppingItems({super.key});

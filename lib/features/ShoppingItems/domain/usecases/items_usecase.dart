@@ -6,6 +6,7 @@ import 'package:gooddeals/features/ShoppingItems/domain/repositories/Items_repos
 class GetItemsUsecase implements Usecase<DataState<List<Product>>, void> {
   final ItemsRepository _itemsRepository;
   GetItemsUsecase(this._itemsRepository);
+  @override
   Future<DataState<List<Product>>> call({void params}) {
     return _itemsRepository.getItems();
   }
