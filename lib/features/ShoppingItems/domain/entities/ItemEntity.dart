@@ -13,7 +13,7 @@ class Product extends Equatable {
   final String brand;
   final String sku;
   final int weight;
-  final Dimensions dimensions;
+
   final String warrantyInformation;
   final String shippingInformation;
   final String availabilityStatus;
@@ -37,7 +37,6 @@ class Product extends Equatable {
     required this.brand,
     required this.sku,
     required this.weight,
-    required this.dimensions,
     required this.warrantyInformation,
     required this.shippingInformation,
     required this.availabilityStatus,
@@ -62,7 +61,7 @@ class Product extends Equatable {
     brand,
     sku,
     weight,
-    dimensions,
+
     warrantyInformation,
     shippingInformation,
     availabilityStatus,
@@ -89,6 +88,16 @@ class Review {
     required this.reviewerName,
     required this.reviewerEmail,
   });
+
+  factory Review.fromJson(Map<String, dynamic> json) {
+    return Review(
+      rating: json['rating'],
+      comment: json['comment'],
+      date: DateTime.parse(json['date']),
+      reviewerName: json['reviewerName'],
+      reviewerEmail: json['reviewerEmail'],
+    );
+  }
 }
 
 class Dimensions {
@@ -111,4 +120,13 @@ class Meta {
     required this.barcode,
     required this.qrCode,
   });
+
+  factory Meta.fromJson(Map<String, dynamic> json) {
+    return Meta(
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
+      barcode: json['barcode'],
+      qrCode: json['qrCode'],
+    );
+  }
 }

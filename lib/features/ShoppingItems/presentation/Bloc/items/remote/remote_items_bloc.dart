@@ -14,8 +14,8 @@ class RemoteItemsBloc extends Bloc<RemoteItemsEvent, RemoteItemsState> {
     if (datastate is DataSuccess && datastate.data!.isNotEmpty) {
       emit(RemoteItemsDone(datastate.data!));
     } else if (datastate is DataFailed) {
+      print(datastate.error!.message);
       emit(RemoteItemsError(datastate.error!));
-      
     }
   }
 }
