@@ -6,10 +6,12 @@ import 'package:gooddeals/features/ShoppingItems/data/repositories/Items_reposit
 import 'package:gooddeals/features/ShoppingItems/domain/repositories/Items_repository.dart';
 import 'package:gooddeals/features/ShoppingItems/domain/usecases/items_usecase.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_bloc.dart';
-
+import 'package:gooddeals/features/ShoppingItems/data/data_sources/local/app_database.dart';
 final sl = GetIt.instance;
 
 Future<void> InitDependencies() async {
+  final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  sl.registerSingleton<AppDatabase>(database);
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<ItemsApiService>(ItemsApiService(sl()));
   sl.registerSingleton<ItemsRepository>(ItemsRepositoryImpl(sl()));

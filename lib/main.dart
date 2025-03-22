@@ -8,6 +8,7 @@ import 'package:gooddeals/injection_container.dart';
 
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await InitDependencies();
   runApp(const MyApp());
 }
