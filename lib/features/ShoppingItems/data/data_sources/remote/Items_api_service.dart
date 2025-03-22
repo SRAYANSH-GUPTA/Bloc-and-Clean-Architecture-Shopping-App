@@ -12,3 +12,11 @@ abstract class ItemsApiService {
   @GET('/products')
   Future<HttpResponse<List<ItemsModel>>> getItems();
 }
+
+class ParseErrorLogger {
+  void logError(Object error, StackTrace stackTrace, RequestOptions options) {
+    print('Error: $error');
+    print('StackTrace: $stackTrace');
+    print('RequestOptions: $options');
+  }
+}
