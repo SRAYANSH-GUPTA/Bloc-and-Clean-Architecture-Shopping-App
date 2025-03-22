@@ -6,7 +6,7 @@ abstract class CartDao {
   @Insert()
   Future<void> addItems(ItemsModel item);
   @delete
-  Future<void> deleteArticle(ItemsModel item);
+  Future<void> deleteItems(ItemsModel item);
   @Query('SELECT * FROM cart')
   Future<List<ItemsModel>> getItems();
 }

@@ -14,7 +14,7 @@ Future<void> InitDependencies() async {
   sl.registerSingleton<AppDatabase>(database);
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<ItemsApiService>(ItemsApiService(sl()));
-  sl.registerSingleton<ItemsRepository>(ItemsRepositoryImpl(sl()));
+  sl.registerSingleton<ItemsRepository>(ItemsRepositoryImpl(sl(), sl()));
   sl.registerSingleton<GetItemsUsecase>(GetItemsUsecase(sl()));
   sl.registerFactory<RemoteItemsBloc>(() => RemoteItemsBloc(sl()));
   log("Dependences initialized");

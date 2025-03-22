@@ -1,13 +1,15 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:gooddeals/core/resources/api_data_state.dart';
+import 'package:gooddeals/features/ShoppingItems/data/data_sources/local/app_database.dart';
 import 'package:gooddeals/features/ShoppingItems/data/data_sources/remote/Items_api_service.dart';
 import 'package:gooddeals/features/ShoppingItems/data/models/Items_model.dart';
 import 'package:gooddeals/features/ShoppingItems/domain/repositories/Items_repository.dart';
-
+import 'package:gooddeals/features/ShoppingItems/domain/entities/ItemEntity.dart';
 class ItemsRepositoryImpl extends ItemsRepository {
   final ItemsApiService _apiService;
-  ItemsRepositoryImpl(this._apiService);
+  final AppDatabase _database;
+  ItemsRepositoryImpl(this._apiService, this._database);
 
   @override
   Future<DataState<List<ItemsModel>>> getItems() async {
@@ -37,5 +39,20 @@ class ItemsRepositoryImpl extends ItemsRepository {
     } on DioException catch (e) {
       return DataFailed(e);
     }
+  }
+
+  @override
+  Future<List<ItemsModel>> getSavedItems() async {
+    return _database.cartDAO.getItems();
+  } 
+
+  @override
+  Future<void> saveItem(Product item) async {
+    await _database.cartDAO.addItems(ItemsModel.fromEntity(item));
+  }
+
+  @override
+  Future<void> removeItem(Product item) async {
+    await _database.cartDAO.deleteItems(ItemsModel.fromEntity(item));
   }
 }

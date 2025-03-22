@@ -63,4 +63,30 @@ class ItemsModel extends Product {
       thumbnail: json['thumbnail'] ?? '',
     );
   }
+
+  factory ItemsModel.fromEntity(Product item) {
+    return ItemsModel(
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      category: item.category,
+      price: item.price,
+      discountPercentage: item.discountPercentage,
+      rating: item.rating,
+      stock: item.stock,
+      tags: item.tags,
+      brand: item.brand,
+      sku: item.sku,
+      weight: item.weight,
+      warrantyInformation: item.warrantyInformation,
+      shippingInformation: item.shippingInformation,
+      availabilityStatus: item.availabilityStatus,
+      reviews: item.reviews,
+      returnPolicy: item.returnPolicy,
+      minimumOrderQuantity: item.minimumOrderQuantity,
+      meta: item.meta,
+      images: item.images,
+      thumbnail: item.thumbnail,
+    );
+  }
 }

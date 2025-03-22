@@ -212,7 +212,7 @@ class _$CartDao extends CartDao {
   }
 
   @override
-  Future<void> deleteArticle(ItemsModel item) async {
+  Future<void> deleteItems(ItemsModel item) async {
     await _itemsModelDeletionAdapter.delete(item);
   }
 }
