@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_bloc.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_event.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_state.dart';
+import 'package:gooddeals/features/ShoppingItems/presentation/pages/shoppingItemPage.dart';
 import 'package:gooddeals/injection_container.dart';
 
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: ShoppingItems(),
       ),
     );
   }
