@@ -3,8 +3,9 @@ import 'package:gooddeals/features/ShoppingItems/domain/entities/ItemEntity.dart
 
 class ItemDisplayWidget extends StatelessWidget {
   final Product product;
+  final Function(Product)? onAddToCart;
 
-  const ItemDisplayWidget({super.key, required this.product});
+  const ItemDisplayWidget({super.key, required this.product, this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,11 @@ class ItemDisplayWidget extends StatelessWidget {
 
     return Card(
       elevation: 5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.zero),
+      ),
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: SizedBox(
-        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,12 +34,20 @@ class ItemDisplayWidget extends StatelessWidget {
                   bottom: 8,
                   right: 8,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.pinkAccent,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  ),
+                    onPressed: () {
+                      if (onAddToCart != null) {
+                        onAddToCart!(product);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.pinkAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     child: Text('Add'),
-                ),),
+                  ),
+                ),
               ],
             ),
             Padding(

@@ -10,10 +10,12 @@ import 'package:gooddeals/features/ShoppingItems/domain/usecases/save_item.dart'
 import 'package:gooddeals/features/ShoppingItems/domain/usecases/remove_item.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_bloc.dart';
 import 'package:gooddeals/features/ShoppingItems/data/data_sources/local/app_database.dart';
-final sl = GetIt.instance;  
+
+final sl = GetIt.instance;
 
 Future<void> InitDependencies() async {
-  final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  final database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   sl.registerSingleton<AppDatabase>(database);
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<ItemsApiService>(ItemsApiService(sl()));
@@ -23,6 +25,6 @@ Future<void> InitDependencies() async {
   sl.registerSingleton<GetSavedItemsUsecase>(GetSavedItemsUsecase(sl()));
   sl.registerSingleton<SaveItemUsecase>(SaveItemUsecase(sl()));
   sl.registerSingleton<RemoveItem>(RemoveItem(sl()));
-  
+
   log("Dependences initialized");
 }

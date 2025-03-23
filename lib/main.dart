@@ -5,7 +5,7 @@ import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/
 import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/items/remote/remote_items_state.dart';
 import 'package:gooddeals/features/ShoppingItems/presentation/pages/shoppingItemPage.dart';
 import 'package:gooddeals/injection_container.dart';
-
+import 'package:gooddeals/features/ShoppingItems/presentation/Bloc/cart/cart_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +18,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteItemsBloc>(
-      create: (context) => sl()..add(const GetItemsEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<RemoteItemsBloc>(
+          create: (context) => sl()..add(const GetItemsEvent()),
+        ),
+        BlocProvider<CartBloc>(create: (context) => CartBloc()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -81,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView.builder(
             itemCount: state.product!.length,
             itemBuilder: (context, index) {
-              return ListTile(title: Text("srayansh"),);
+              return ListTile(title: Text("srayansh"));
             },
           );
         }
