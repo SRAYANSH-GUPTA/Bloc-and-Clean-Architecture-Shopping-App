@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gooddeals/features/ShoppingItems/domain/entities/ItemEntity.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 class ItemDisplayWidget extends StatelessWidget {
   final Product product;
   final Function(Product)? onAddToCart;
@@ -17,15 +18,19 @@ class ItemDisplayWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.zero),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
       child: SizedBox(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
-                Image.network(
-                  product.thumbnail,
+                CachedNetworkImage(
+                  placeholder: (context, url) => LinearProgressIndicator(
+                    color: Colors.lightBlue,
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  imageUrl: product.thumbnail,
                   width: double.infinity,
                   height: 100,
                   fit: BoxFit.cover,
@@ -40,12 +45,13 @@ class ItemDisplayWidget extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.pinkAccent,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Text('Add'),
+                    child: Text('Add',
+                    style: TextStyle(color: Colors.pinkAccent),),
                   ),
                 ),
               ],
@@ -58,8 +64,10 @@ class ItemDisplayWidget extends StatelessWidget {
                   Text(
                     product.title,
                     style: TextStyle(fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                   ),
-                  Text(product.brand, style: TextStyle(color: Colors.grey)),
+                  Text(product.brand, style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,maxLines: 1,),
                   Text(
                     '₹${discountedPrice.toStringAsFixed(2)}',
                     style: TextStyle(
