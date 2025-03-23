@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gooddeals/features/ShoppingItems/data/models/Items_model.dart';
 import 'package:gooddeals/features/ShoppingItems/data/repositories/Items_repository.dart';
@@ -8,8 +9,11 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Cart'), backgroundColor: Colors.pink[50],
-      centerTitle: true,),
+      appBar: AppBar(
+        title: Text('Cart'),
+        backgroundColor: Colors.pink[50],
+        centerTitle: true,
+      ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state.items.isEmpty) {
@@ -24,7 +28,8 @@ class CartPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = state.items[index];
                     final discountedPrice =
-                        item.product.price * (1 - item.product.discountPercentage / 100);
+                        item.product.price *
+                        (1 - item.product.discountPercentage / 100);
 
                     return Card(
                       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -33,18 +38,23 @@ class CartPage extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                item.product.thumbnail,
+                              child: CachedNetworkImage(
+                                placeholder:
+                                    (context, url) => LinearProgressIndicator(
+                                      color: Colors.lightBlue,
+                                    ),
+                                errorWidget:
+                                    (context, url, error) => Icon(Icons.error),
+                                imageUrl: item.product.thumbnail,
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,
                               ),
                             ),
                             SizedBox(width: 12),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,6 +65,8 @@ class CartPage extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                     ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 3,
                                   ),
                                   Text(
                                     item.product.brand,
@@ -77,7 +89,7 @@ class CartPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          
+
                             Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -129,7 +141,7 @@ class CartPage extends StatelessWidget {
                   },
                 ),
               ),
-              
+
               Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -167,9 +179,7 @@ class CartPage extends StatelessWidget {
                       ),
                       SizedBox(height: 16),
                       ElevatedButton(
-                        onPressed: () {
-                          
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.pink,
                           padding: EdgeInsets.symmetric(vertical: 16),
@@ -180,12 +190,15 @@ class CartPage extends StatelessWidget {
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Text(
-                              'Check Out',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                            
-                            ]
+                            children: [
+                              Text(
+                                'Check Out',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
