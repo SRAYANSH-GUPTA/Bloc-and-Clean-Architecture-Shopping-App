@@ -27,7 +27,7 @@ class ItemDisplayWidget extends StatelessWidget {
                 Image.network(
                   product.thumbnail,
                   width: double.infinity,
-                  height: 150,
+                  height: 100,
                   fit: BoxFit.cover,
                 ),
                 Positioned(
