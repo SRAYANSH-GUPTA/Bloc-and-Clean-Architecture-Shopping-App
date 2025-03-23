@@ -5,7 +5,7 @@ A modern Flutter e-commerce application implementing clean architecture principl
 ## 🏗️ Architecture & Folder Structure
 
 The project follows Clean Architecture principles with a clean-architecture approach:
-
+<pre>
 lib/
 ├── core/
 │ ├── resources/
@@ -55,7 +55,7 @@ lib/
 │ │ └── shoppingItemPage.dart
 │ └── widgets/
 │ └── Item_display_widget.dart
-
+</pre>
 
 ## 🛠️ Technologies & Packages
 
