@@ -1,0 +1,4 @@
+#Sun Mar 23 06:24:33 IST 2025
+base.0=/home/srayansh/Documents/flutter/shoppingapp/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
