@@ -170,4 +170,4 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ```bash
 flutter run
 ```
-
+5. Flutter version - 3.29.3
